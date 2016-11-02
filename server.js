@@ -9,7 +9,7 @@ var session = require('express-session');
 var app = express();
 
 //allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'app', cookie: { maxAge: null }}));
 app.use(cookieParser());
 
 // view engine setup
