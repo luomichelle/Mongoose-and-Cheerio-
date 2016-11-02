@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var debug = require('debug')('express');
+
+// we bring in the app we exported from server.js
+var app = require('../server');
+
+// we set the port of the app
+app.set('port', process.env.PORT || 3000);
+
+var server = app.listen(app.get('port'), function() {
+  // then save a log of the listening to our debugger.
+  debug('Express server listening on port ' + server.address().port);
+});
