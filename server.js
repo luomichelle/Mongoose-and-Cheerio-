@@ -4,6 +4,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser'); // for working with cookies
 var bodyParser = require('body-parser');
 var session = require('express-session');
+//================================
+// Notice: Our scraping tools are prepared, too
+var request = require('request'); 
+var cheerio = require('cheerio');
+var mongoose = require('mongoose');
 
 // instantiate our app
 var app = express();
@@ -22,6 +27,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+// use morgan and bodyparser with our app
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,6 +37,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", require("./controllers/application_controller"));
 app.use("/user", require("./controllers/user_controller"));
 
+
+//===========================================
+
+Database configuration with mongoose
+mongoose.connect('mongodb://localhost/week18day3mongoose');
+var db = mongoose.connection;
+
+// show any mongoose errors
+db.on('error', function(err) {
+  console.log('Mongoose Error: ', err);
+});
+
+// once logged in to the db through mongoose, log a success message
+db.once('open', function() {
+  console.log('Mongoose connection successful.');
+});
+
+//===============================================
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
