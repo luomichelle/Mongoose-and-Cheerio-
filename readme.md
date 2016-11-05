@@ -14,7 +14,7 @@ All users can leave comments on the stories you collect. They should also be all
 You'll need to use Mongoose's model system to associate comments with particular articles.
 
 
-Tips
+Tips:
 
 Whenever you scrape a site for stories, make sure an article isn't already represented in your database before saving it; we don't want duplicates.
 
