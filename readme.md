@@ -4,23 +4,6 @@ Overview
 
 In this assignment, you'll create a web app that lets users leave comments on the latest news. But you're not going to actually write any articles; instead, you'll flex your Mongoose and Cheerio muscles to scrape news from another site.
 
-Remember
-
-You will be fully capable of doing this homework by the end of Saturday's class.
-Before You Begin
-
-Create a GitHub repo for this assignment and clone it to your computer. Any name will do -- just make sure it's related to this project in some fashion.
-
-Run npm init. When that's finished, install and save these npm packages:
-
-express
-express-handlebars
-mongoose
-body-parser
-cheerio
-request
-NOTE: If you want to earn complete credit for your work, you must use all six of these packages in your assignment.
-In order to deploy your project to Heroku, you must set up an mLab provision. mLab is remote MongoDB database that Heroku supports natively. Follow these steps to get it running:
 
 Create a Heroku app in your project directory.
 Run this command in your Terminal/Bash window:
@@ -42,9 +25,9 @@ Use Cheerio to grab the site content and Mongoose to save it to your MongoDB dat
 All users can leave comments on the stories you collect. They should also be allowed to delete whatever comments they want removed. All stored comments should be visible to every user.
 
 You'll need to use Mongoose's model system to associate comments with particular articles.
+
 Tips
 
-Go back to Saturday's activities if you need a refresher on how to partner one model with another.
 
 Whenever you scrape a site for stories, make sure an article isn't already represented in your database before saving it; we don't want duplicates.
 
