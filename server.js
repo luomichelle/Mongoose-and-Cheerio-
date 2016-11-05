@@ -36,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", require("./controllers/application_controller"));
 app.use("/user", require("./controllers/user_controller"));
-app.use("/note", require("./controllers/note_controller"));
 app.use("/article", require("./controllers/article_controller"));
 
 //===============================================

@@ -21,7 +21,7 @@ $(document).on('click', 'p', function(){
   // now make an ajax call for the Article
   $.ajax({
     method: "GET",
-    url: "/articles/" + thisId,
+    url: "/article/articles/" + thisId,
   })
     // with that done, add the note information to the page
     .done(function( data ) {
@@ -53,7 +53,7 @@ $(document).on('click', '#savenote', function(){
   // run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/articles/" + thisId,
+    url: "/article/articles/" + thisId,
     data: {
       title: $('#titleinput').val(), // value taken from title input
       body: $('#bodyinput').val() // value taken from note textarea

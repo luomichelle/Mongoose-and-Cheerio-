@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 var article = require('../models').article;
-var User = require('../models').note;
+var note = require('../models').note;
 // var article = require('../models/article.js');
 
 
@@ -95,10 +95,10 @@ router.get('/articles/:id', function(req, res){
 // or if no note exists for an article, make the posted note it's note.
 router.post('/articles/:id', function(req, res){
 	// create a new note and pass the req.body to the entry.
-	var newNote = new note(req.body);
+	var newnote = new note(req.body);
 
 	// and save the new note the db
-	newNote.save(function(err, doc){
+	newnote.save(function(err, doc){
 		// log any errors
 		if(err){
 			console.log(err);
@@ -108,7 +108,7 @@ router.post('/articles/:id', function(req, res){
 			// using the Article id passed in the id parameter of our url, 
 			// prepare a query that finds the matching Article in our db
 			// and update it to make it's lone note the one we just saved
-			Article.findOneAndUpdate({'_id': req.params.id}, {'note':doc._id})
+			article.findOneAndUpdate({'_id': req.params.id}, {'note':doc._id})
 			// execute the above query
 			.exec(function(err, doc){
 				// log any errors
