@@ -28,7 +28,6 @@ You'll need to use Mongoose's model system to associate comments with particular
 
 Tips
 
-
 Whenever you scrape a site for stories, make sure an article isn't already represented in your database before saving it; we don't want duplicates.
 
 Don't just clear out your database and populate it with scraped articles whenever a user accesses your site.
