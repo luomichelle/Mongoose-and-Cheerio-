@@ -58,11 +58,3 @@ MongoDB Documentation
 Mongoose Documentation
 Cheerio Documentation
 One Last Thing
-
-Like always, contact either the instructor or one of your TAs for support if you find yourself stuck while working on this assignment. That goes threefold for this week: MongoDB and Mongoose compose a challenging data management system. If there's anything you find confusing about these technologies, don't hesitate to speak with someone from the Bootcamp team.
-
-Good Luck!
-
-Copyright
-
-Coding Boot Camp (C) 2016. All Rights Reserved.
