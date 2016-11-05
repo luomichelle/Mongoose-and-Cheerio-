@@ -25,4 +25,23 @@ fs
     db[modelDefinition.name] = model;
   });
 
+
+
+  //===========================================
+
+// //Database configuration with mongoose
+// mongoose.connect('mongodb://localhost/week18day3mongoose');
+// var db = mongoose.connection;
+
+// // show any mongoose errors
+// db.on('error', function(err) {
+//   console.log('Mongoose Error: ', err);
+// });
+
+// // once logged in to the db through mongoose, log a success message
+// db.once('open', function() {
+//   console.log('Mongoose connection successful.');
+// });
+
+
 module.exports = db;

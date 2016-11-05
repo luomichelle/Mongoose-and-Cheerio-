@@ -36,25 +36,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", require("./controllers/application_controller"));
 app.use("/user", require("./controllers/user_controller"));
-
-
-//===========================================
-
-Database configuration with mongoose
-mongoose.connect('mongodb://localhost/week18day3mongoose');
-var db = mongoose.connection;
-
-// show any mongoose errors
-db.on('error', function(err) {
-  console.log('Mongoose Error: ', err);
-});
-
-// once logged in to the db through mongoose, log a success message
-db.once('open', function() {
-  console.log('Mongoose connection successful.');
-});
+app.use("/note", require("./controllers/note_controller"));
+app.use("/article", require("./controllers/article_controller"));
 
 //===============================================
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
