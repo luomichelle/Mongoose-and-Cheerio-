@@ -2,11 +2,15 @@ var express = require('express');
 var router = express.Router();
 var request = require('request'); 
 var cheerio = require('cheerio');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
-var Article = require('../models/Article.js');
-console.log("yoyo1")
+var article = require('../models').article;
+// var article = require('../models/article.js');
+
+
 // A GET request to scrape the echojs website.
-router.get('/scrape', function(req, res) {
+router.get("/scrape", function(req, res) {
 	console.log("yoyo2")
 	// first, we grab the body of the html with request
   request('http://www.echojs.com/', function(error, response, html) {
@@ -28,7 +32,7 @@ router.get('/scrape', function(req, res) {
 				// using our Article model, create a new entry.
 				// Notice the (result):
 				// This effectively passes the result object to the entry (and the title and link)
-				var entry = new Article (result);
+				var entry = new article (result);
 
 				// now, save that entry to the db
 				entry.save(function(err, doc) {
@@ -41,7 +45,6 @@ router.get('/scrape', function(req, res) {
 				    console.log(doc);
 				  }
 				});
-
 
     });
   });

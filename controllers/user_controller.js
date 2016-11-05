@@ -4,7 +4,10 @@ var pwUtil = require('../helpers/password');
 
 var User = require('../models').User;
 
+
+
 router.get("/sign-up", function(req, res) {
+    console.log("yoyoget1")
   res.render("users/sign_up");
 });
 
