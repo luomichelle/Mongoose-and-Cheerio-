@@ -74,6 +74,7 @@ router.get('/articles', function(req, res){
 router.get('/articles/:id', function(req, res){
 	// using the id passed in the id parameter, 
 	// prepare a query that finds the matching one in our db...
+	console.log("1111")
 	article.findOne({'_id': req.params.id})
 	// and populate all of the notes associated with it.
 	.populate('note')
@@ -82,10 +83,12 @@ router.get('/articles/:id', function(req, res){
 		// log any errors
 		if (err){
 			console.log(err);
+			console.log("1111")
 		} 
 		// otherwise, send the doc to the browser as a json object
 		else {
 			res.json(doc);
+			console.log("1111222")
 		}
 	});
 });

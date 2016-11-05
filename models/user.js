@@ -21,7 +21,7 @@ var user = {
   		// store ObjectIds in the array
       type: Schema.Types.ObjectId,
       // the ObjectIds will refer to the ids in the Note model
-      ref: 'Note'
+      ref: 'note'
   	}]
   })
 };

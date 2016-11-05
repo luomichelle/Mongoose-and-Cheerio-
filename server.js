@@ -34,6 +34,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use("/", require("./controllers/application_controller"));
 app.use("/user", require("./controllers/user_controller"));
 app.use("/article", require("./controllers/article_controller"));
