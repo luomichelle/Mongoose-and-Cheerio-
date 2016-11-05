@@ -32,8 +32,7 @@ Notice the value that appears after MONGODB_URI =>. This is your URI string. Cop
 When you’re ready to connect Mongoose with your remote database, simply paste the URI string as the lone argument of your mongoose.connect() function. That’s it!
 Watch this demo of a possible submission.
 
-Your site doesn't need to match the demo's style, but feel free to attempt something similar if you'd like. Otherwise, just be creative!
-Instructions
+
 
 Create an app that follows this user story:
 
