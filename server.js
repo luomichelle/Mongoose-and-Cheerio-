@@ -1,64 +1,67 @@
+// Solution 2: Add a Relationship
+// ==============================
+
+// This solutions adds a Customers model to keep track of the folks
+// who eat particular burgers. The user will have an option to list 
+// the name of the devourer, and that name will be associated
+// with the devoured burger.
+
+
+// Step 1: Created a Customer model with the sequelize CLI:
+//         sequelize model:create --name Customer --attributes 'name:string'
+
+// Step 2: Added a hasOne(Customer) association to the Burger model's classMethods.
+
+// Step 3: edited burger controller to use setAssociates
+//         to save and set the name of the devourer.
+
+// Step 4: Edited index.handlebars to account for scenarios 
+//		   when a customer is and isn't listed.
+
+// Step 5: Minor css style changes to stop elements from bleeding into eachother.
+
+
+
 var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser'); // for working with cookies
 var bodyParser = require('body-parser');
-var session = require('express-session');
-//================================
-// Notice: Our scraping tools are prepared, too
-var request = require('request'); 
-var cheerio = require('cheerio');
-var mongoose = require('mongoose');
+var methodOverride = require('method-override')
 
-// instantiate our app
+
+// bring in the models
+var models = require('./models')
+
+// sync the models
+models.sequelize.sync();
+
+// Instantiate Express
 var app = express();
+//Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(__dirname + '/public'));
 
-//allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: null }}));
-app.use(cookieParser());
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
-//set up handlebars
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({
+	extended: false
+}))
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
-// use morgan and bodyparser with our app
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// bring in the routes
+var routes = require('./controllers/burgers_controller.js');
+
+// connect the routes
+app.use('/', routes);
+app.use('/update', routes);
+app.use('/create', routes);
 
 
 
-app.use("/", require("./controllers/application_controller"));
-app.use("/user", require("./controllers/user_controller"));
-app.use("/article", require("./controllers/article_controller"));
+// listen on port 3000
+var port = process.env.PORT || 3000;
+app.listen(port);
 
-//===============================================
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-// no stacktraces leaked to user unless in development environment
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: (app.get('env') === 'development') ? err : {}
-  });
-});
-
-
-// our module get's exported as app.
-module.exports = app;
+console.log(module.exports)

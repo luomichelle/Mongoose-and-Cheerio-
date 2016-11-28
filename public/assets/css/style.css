@@ -1,33 +1,67 @@
-    body{
-      /*background-color: #DECADE*/
-      background-color: #F2F6D0
-    }
-    #wrapper{
-      width:960px;
-      margin: 0 auto;
-      padding-top: 5%;
-    }
-    #articles{
-      width:60%;
-      height:700px;
-      display:inline-block;
-      overflow: auto;
-    }
-    #notes{
-      width:30%;
-      float:right;
-    }
-    textarea, input{
-      display:block;
-      width:100%;
-      background-color: #FCF5C7;
-    }
-    input{
-      height:36px;
-      font-size: 24px;
-    }
-    textarea{
-      height:200px;
-      font-size: 18px;
-    }
-  </style>
+body {
+  width: 99%;
+  height: 900px;
+  background-color: #ffcc66;
+}
+#top-bar {
+	margin-top: 28px;
+}
+.spacing-reset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.list-reset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.text-center {
+    margin: auto;
+}
+
+input.custInput {
+  width: 80px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 990px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 990px;
+  }
+}
+
+.enter_section {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+#enter_text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: auto;
+	width: 400px;
+	height: 80px;
+  font-size: 38px
+}
+.task {
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+}
+.button-size {
+	padding-bottom: 20px;
+}
+#text-enter-button {
+	margin-top: 10px;
+	margin-bottom: 18px;
+}
+
+h1 {
+  color: #ff3300;
+}
