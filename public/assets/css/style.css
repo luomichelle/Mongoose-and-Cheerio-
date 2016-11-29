@@ -1,67 +1,169 @@
+html{
+	height:100%;
+	background-color: black;
+}
 body {
-  width: 99%;
-  height: 900px;
-  background-color: #ffcc66;
+	width:1024px;
+	height: 100%;
+	margin:0 auto;
 }
-#top-bar {
-	margin-top: 28px;
-}
-.spacing-reset {
-  padding: 0;
-  border: 0;
-  margin: 0;
-}
-.list-reset {
-  padding: 0;
-  border: 0;
-  margin: 0;
-  list-style-type: none;
-}
-.text-center {
-    margin: auto;
-}
-
-input.custInput {
-  width: 80px;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 990px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 990px;
-  }
-}
-
-.enter_section {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-#enter_text {
-	padding-top: 10px;
-	padding-bottom: 10px;
+h1{
+	padding-top: 20px;
+	width: 600px;
 	margin: auto;
-	width: 400px;
-	height: 80px;
-  font-size: 38px
+	color: deepskyblue;
+	font-size: 60px;
 }
-.task {
-	border-style: solid;
-	border-color: black;
-	border-width: 3px;
-}
-.button-size {
-	padding-bottom: 20px;
-}
-#text-enter-button {
-	margin-top: 10px;
-	margin-bottom: 18px;
+#city {
+	background-image: url("../../assets/images/city.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+	z-index: -30;
+	height: 100%;
 }
 
-h1 {
-  color: #ff3300;
+.container {
+  width: 400px;
+  height: 100%;
+	margin:2% auto;
+  position: relative;
+  perspective: 1000px;
+}
+
+#cube {
+
+	margin:8% auto 0 auto;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transform: translateZ( -100px );
+/*  opacity: 0.3;*/
+}
+
+#cube figure {
+  margin: 0;
+  width: 400px;
+  height: 400px;
+  display: block;
+  position: absolute;
+  border: 3px solid black;
+  cursor: pointer;
+	overflow: auto;
+}
+
+#face-color{
+	background-color: deepskyblue;
+	opacity: 0.075;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+}
+
+
+#cube .front  { transform: rotateY(   0deg ) translateZ( 202px ); }
+#cube .back   { transform: rotateX( 180deg ) translateZ( 202px ); }
+#cube .right  { transform: rotateY(  90deg ) translateZ( 202px ); }
+#cube .left   { transform: rotateY( -90deg ) translateZ( 202px ); }
+#cube .top    { transform: rotateX(  90deg ) translateZ( 202px ); }
+#cube .bottom { transform: rotateX( -90deg ) translateZ( 202px ); }
+
+#cube.show-front  { transform: translateZ( -100px ) rotateY(    0deg ); }
+#cube.show-back   { transform: translateZ( -100px ) rotateX( -180deg ); }
+#cube.show-right  { transform: translateZ( -100px ) rotateY(  -90deg ); }
+#cube.show-left   { transform: translateZ( -100px ) rotateY(   90deg ); }
+#cube.show-top    { transform: translateZ( -100px ) rotateX(  -90deg ); }
+#cube.show-bottom { transform: translateZ( -100px ) rotateX(   90deg ); }
+
+#cube { transition: transform 2s; }
+
+#headline{
+	color: white;
+	font-size: 40px;
+	opacity: .85;
+}
+
+#typewriter-headline, #typewriter-summary{
+	color: white;
+	font-weight: bold;
+	font-size: 26px;
+	line-height:38px;
+	z-index: 10;
+	padding:20px;
+}
+#typewriter-summary{
+	padding-top: 0;
+}
+
+#seek-box{
+	/*	background-color: white;*/
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	left: 100px;
+	bottom: 100px;
+	background-image: url("../../assets/images/cube2.png");
+	cursor: pointer;
+}
+#input-area{
+	float:left;
+	margin-top:2%;
+}
+#input-box input[type="text"], textarea {
+	color: deepskyblue;
+	background-color : black;
+    text-align: left;
+    padding-top: 1px;
+    width: 200px;
+    height: 300px;
+    font-size: 20px;
+    opacity: .78;
+}
+
+#note-button {
+  color: black;
+  opacity: .45;
+	background-color : deepskyblue;
+	width: 200px;
+	height: 110px;
+}
+
+#saved-area{
+	float:right;
+	margin-top:2%;
+}
+#note-box {
+	background-color: black;
+    font-size: 20px;
+    opacity: .58;
+    width: 200px;
+    height: 300px;
+}
+
+#delete-button {
+    color: black;
+    opacity: .65;
+	background-color : darkslategray;
+	width: 200px;
+	height: 110px;
+	cursor: pointer;
+}
+
+.button {
+	width: 80px;
+	height: 80px;
+	display:block;
+	margin:0px auto;
+	padding:10px;
+	cursor: pointer;
+}
+
+@media screen and (min-height:900px) {
+	.container, #input-area, #saved-area{
+		margin-top: 20%;
+	}
+
+	#cube {
+		margin-top: 15%;
+	}
 }

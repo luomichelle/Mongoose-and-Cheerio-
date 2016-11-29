@@ -1,67 +1,65 @@
-// Solution 2: Add a Relationship
-// ==============================
+/* Web Scraper Homework Solution Example
+ *    (be sure to watch the video to see
+ *     how to operate the site in the broser)
+ * -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ */
 
-// This solutions adds a Customers model to keep track of the folks
-// who eat particular burgers. The user will have an option to list 
-// the name of the devourer, and that name will be associated
-// with the devoured burger.
-
-
-// Step 1: Created a Customer model with the sequelize CLI:
-//         sequelize model:create --name Customer --attributes 'name:string'
-
-// Step 2: Added a hasOne(Customer) association to the Burger model's classMethods.
-
-// Step 3: edited burger controller to use setAssociates
-//         to save and set the name of the devourer.
-
-// Step 4: Edited index.handlebars to account for scenarios 
-//		   when a customer is and isn't listed.
-
-// Step 5: Minor css style changes to stop elements from bleeding into eachother.
-
-
-
+// Require our dependencies
 var express = require('express');
+var path = require('path');
+var mongoose = require('mongoose');
+var expressHandlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
 
-
-// bring in the models
-var models = require('./models')
-
-// sync the models
-models.sequelize.sync();
-
-// Instantiate Express
+// Instantiate our Express App
 var app = express();
-//Serve static content for the app from the "public" directory in the application directory.
+
+// Designate our public folder as a static directory
 app.use(express.static(__dirname + '/public'));
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-	extended: false
-}))
-// override with POST having ?_method=DELETE
-app.use(methodOverride('_method'))
-var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({
+// connect Handlebars to our Express app
+app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
-// bring in the routes
-var routes = require('./controllers/burgers_controller.js');
+// use bodyParser in our app
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
-// connect the routes
+
+// Save MongoDB directory to a db var
+var db = 'mongodb://localhost/mongoHeadlines';
+
+// Connect that directory to Mongoose, for simple, powerful querying
+mongoose.connect(db, function(err){
+	// log any errors connecting with mongoose
+  if(err){
+    console.log(err);
+  } 
+  // or log a success message
+  else {
+    console.log('mongoose connection is sucessful');
+  }
+});
+
+// bring in our routes file into the the server files
+var routes = require('./config/routes.js');
+
+// Incorporate these routes into our app
 app.use('/', routes);
-app.use('/update', routes);
-app.use('/create', routes);
+app.use('/test', routes);
+app.use('/fetch', routes);
+app.use('/gather', routes);
+app.use('/check', routes);
+app.use('/save', routes);
+app.use('/delete', routes);
 
 
-
-// listen on port 3000
+// set up our port to be either the host's designated port, or 3000
 var port = process.env.PORT || 3000;
-app.listen(port);
 
-console.log(module.exports)
+// set our app to listen on the port.
+app.listen(port, function() {
+    console.log("lisenting on port:" + port);
+});
