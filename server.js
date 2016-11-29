@@ -28,20 +28,34 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-// Save MongoDB directory to a db var
-var db = 'mongodb://localhost/mongoHeadlines';
+// // Save MongoDB directory to a db var
+// var db = 'mongodb://localhost/mongoHeadlines';
 
-// Connect that directory to Mongoose, for simple, powerful querying
-mongoose.connect(db, function(err){
-	// log any errors connecting with mongoose
-  if(err){
-    console.log(err);
-  } 
-  // or log a success message
-  else {
-    console.log('mongoose connection is sucessful');
-  }
+// // Connect that directory to Mongoose, for simple, powerful querying
+// mongoose.connect(db, function(err){
+// 	// log any errors connecting with mongoose
+//   if(err){
+//     console.log(err);
+//   } 
+//   // or log a success message
+//   else {
+//     console.log('mongoose connection is sucessful');
+//   }
+// });
+
+
+// MongoDB Configuration configuration (Change this URL to your own DB)
+mongoose.connect('mongodb://luomichelle:Xigua123456@ds151117.mlab.com:51117/mern');
+var db = mongoose.connection;
+
+db.on('error', function (err) {
+  console.log('Mongoose Error: ', err);
 });
+
+db.once('open', function () {
+  console.log('Mongoose connection successful.');
+});
+
 
 // bring in our routes file into the the server files
 var routes = require('./config/routes.js');
